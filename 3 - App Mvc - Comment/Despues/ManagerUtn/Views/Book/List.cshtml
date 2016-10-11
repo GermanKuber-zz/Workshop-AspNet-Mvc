@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ManagerUtn.Models.BookViewModel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+
+
+</table>
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        @*<tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>*@
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img style="width: 120px;height: 160px" src="@item.Image" alt="">
+                <div class="caption">
+                    <h4 class="pull-right">$24.99</h4>
+                    <h4>
+                        @Html.ActionLink(item.Titulo, "Details", new { id = item.Id })
+                    </h4>
+                    <p>@(item.Descripcion.Length > 180 ? item.Descripcion.Substring(0, 180) + "..." : item.Descripcion) </p>
+                </div>
+                <div class="ratings">
+                    @Html.ActionLink("Comentar", "Create", "Comments", new { bookId = item.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                    @*<button class="btn btn-primary">Comentar</button>*@
+                    <p class="pull-right">@item.Comentarios.Count reviews</p>
+
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

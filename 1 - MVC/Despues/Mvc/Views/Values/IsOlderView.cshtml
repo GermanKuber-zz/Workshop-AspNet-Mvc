@@ -1,0 +1,39 @@
+﻿@model Mvc.Models.ValuesViewModel
+
+@{
+    ViewBag.Title = "IsOlderView";
+}
+
+<h2>IsOlderView</h2>
+
+<div>
+    <h4>ValuesViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsOlder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsOlder)
+        </dd>
+
+    </dl>
+</div>
+

@@ -1,0 +1,73 @@
+﻿@using ManagerUtn.Models
+@model CommentViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Comment</h4>
+        <hr />
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <div class="thumbnail">
+                <img style="width: 120px;height: 160px" src="@ViewBag.Book.Image" alt="">
+                <div class="caption">
+                    @*<h4 class="pull-right">$24.99</h4>*@
+                    <h4>
+                        @ViewBag.Book.Titulo
+                    </h4>
+                    <p>@(ViewBag.Book.Descripcion.Length > 180 ? ViewBag.Book.Descripcion.Substring(0, 180) + "..." : ViewBag.Book.Descripcion) </p>
+
+                    @Html.Hidden("bookId", (int)ViewBag.Book.Id)
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <table class="table">
+            <tr>
+                <th>
+                   Comentarios</th>
+      
+            </tr>
+
+            @foreach (var item in ViewBag.Book.Comentarios)
+            {
+                <tr>
+                    <td>
+                        @item.Comentario
+                    </td>
+          
+                </tr>
+            }
+
+        </table>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comentario, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.TextArea("Comentario", null, new { @class = "form-control", @rows = "10", @cols = "50" })
+                @Html.ValidationMessageFor(model => model.Comentario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Comentar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

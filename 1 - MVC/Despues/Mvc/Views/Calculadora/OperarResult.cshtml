@@ -1,0 +1,22 @@
+﻿@model Mvc.Models.CalculadoraViewModel
+
+@{
+    ViewBag.Title = "OperarResult";
+}
+
+<h2>OperarResult</h2>
+
+<div>
+    <h4>CalculadoraViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Resultado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resultado)
+        </dd>
+
+    </dl>
+</div>

@@ -13,7 +13,7 @@ namespace ManagerUtn.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201610200103158_First"; }
+            get { return "201610201447177_First"; }
         }
         
         string IMigrationMetadata.Source

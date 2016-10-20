@@ -10,11 +10,11 @@ namespace ManagerUtn.Controllers
 
         public HomeController()
         {
-            this._bookRepository = new BookRepository();
+            _bookRepository = new BookRepository();
         }
         public ActionResult Index()
         {
-            var book = this._bookRepository.GetBookWithMoreComments();
+            var book = _bookRepository.GetBookWithMoreComments();
             var bookModel = new BookViewListModel(book);
             return View(bookModel);
         }

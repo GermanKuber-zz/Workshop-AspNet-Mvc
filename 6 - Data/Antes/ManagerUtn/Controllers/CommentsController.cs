@@ -15,8 +15,8 @@ namespace ManagerUtn.Controllers
         private IBookRepository _bookRepository;
         public CommentsController()
         {
-            this._commentRepository = new CommentRepository();
-            this._bookRepository = new BookRepository();
+            _commentRepository = new CommentRepository();
+            _bookRepository = new BookRepository();
         }
 
         [HttpGet]
@@ -58,7 +58,7 @@ namespace ManagerUtn.Controllers
 
         private Book VerifyData(int bookId)
         {
-            var book = this._bookRepository.GetById(bookId);
+            var book = _bookRepository.GetById(bookId);
             ViewBag.Book = new BookViewModel(book);
             return book;
         }

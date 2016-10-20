@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ManagerUtn.Entities;
+using ManagerUtn.Repositories.Interfaces;
 
-namespace ManagerUtn.Repositories
+namespace ManagerUtn.Repositories.Memory
 {
-    public class BookRepository : IBookRepository
+    public class BookMemoryRepository : IBookRepository
     {
 
       public List<Book> GetAll()

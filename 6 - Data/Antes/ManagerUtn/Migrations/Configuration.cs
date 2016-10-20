@@ -18,7 +18,7 @@ namespace ManagerUtn.Migrations
 
         protected override void Seed(ManagerUtn.Models.ApplicationDbContext context)
         {
-            if (!context.Users.Any(u => u.UserName == "admin"))
+            if (!context.Users.Any(u => u.UserName == "admin@admin.com"))
             {
                 var roleStore = new RoleStore<IdentityRole>(context);
                 var roleManager = new RoleManager<IdentityRole>(roleStore);

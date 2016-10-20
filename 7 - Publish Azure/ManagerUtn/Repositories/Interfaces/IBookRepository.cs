@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using ManagerUtn.Entities;
 
-namespace ManagerUtn.Repositories
+namespace ManagerUtn.Repositories.Interfaces
 {
     public interface IBookRepository
     {

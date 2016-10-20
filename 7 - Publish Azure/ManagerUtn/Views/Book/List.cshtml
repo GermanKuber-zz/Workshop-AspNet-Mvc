@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ManagerUtn.Models.BookViewListModel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Lista de libros</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        @Html.Partial("_BookFile", item)
+    }
+</div>

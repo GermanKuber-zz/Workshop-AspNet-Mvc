@@ -2,19 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using ManagerUtn.Entities;
+using ManagerUtn.Models;
+using ManagerUtn.Repositories.Interfaces;
 
-namespace ManagerUtn.Repositories
+namespace ManagerUtn.Repositories.DB
 {
-    public class CommentRepository : ICommentRepository
+    public class CommentDbRepository : ICommentRepository
     {
+        private readonly ApplicationDbContext _dbContext;
 
+        public CommentDbRepository()
+        {
+            _dbContext = new ApplicationDbContext();
+        }
         public List<Comment> GetAll(int idBook)
         {
-            return DbContext.Books.FirstOrDefault(x => x.Id == idBook)?.Comentarios?.ToList();
+            return _dbContext.Books.FirstOrDefault(x => x.Id == idBook)?.Comentarios?.ToList();
         }
         public Comment GetById(int id)
         {
-            return DbContext.Books.SelectMany(x => x.Comentarios.Where(s => s.Id == id)).FirstOrDefault();
+            return _dbContext.Books.SelectMany(x => x.Comentarios.Where(s => s.Id == id)).FirstOrDefault();
         }
 
         Comment Remove(Comment comment, int bookId)
@@ -22,15 +29,16 @@ namespace ManagerUtn.Repositories
             return RemoveById(comment.Id, bookId);
         }
 
-        private static Comment RemoveById(int id, int bookId)
+        private  Comment RemoveById(int id, int bookId)
         {
-            if (DbContext.Books != null && DbContext.Books.Count > 0)
+            if (_dbContext.Books != null && _dbContext.Books.Any())
             {
                 var bookDelete =
-                    (DbContext.Books.FirstOrDefault(x => x.Id == bookId)?.Comentarios)
+                    (_dbContext.Books.FirstOrDefault(x => x.Id == bookId)?.Comentarios)
                         .FirstOrDefault(s => s.Id == id);
 
-                DbContext.Books.FirstOrDefault(x => x.Id == bookId)?.Comentarios?.Remove(bookDelete);
+                _dbContext.Books.FirstOrDefault(x => x.Id == bookId)?.Comentarios?.Remove(bookDelete);
+                _dbContext.SaveChanges();
                 return bookDelete;
             }
             return null;
@@ -43,7 +51,7 @@ namespace ManagerUtn.Repositories
 
         public Comment Add(Comment comment, int bookId)
         {
-            var book = DbContext.Books.FirstOrDefault(x => x.Id == bookId);
+            var book = _dbContext.Books.FirstOrDefault(x => x.Id == bookId);
             if (book != null)
             {
                 if (book.Comentarios == null)
@@ -52,6 +60,7 @@ namespace ManagerUtn.Repositories
 
                 comment.Id = random.Next(0, 230);
                 book.Comentarios.Add(comment);
+                _dbContext.SaveChanges();
 
             }
             return comment;
@@ -61,12 +70,13 @@ namespace ManagerUtn.Repositories
 
           
 
-            if (DbContext.Books != null && DbContext.Books.Count > 0)
+            if (_dbContext.Books != null && _dbContext.Books.Any())
             {
-                var commetUpdate = DbContext.Books.SelectMany(x => x.Comentarios.Where(s => s.Id == comment.Id)).FirstOrDefault();
-                var book = DbContext.Books.FirstOrDefault(x => x.Comentarios.Any(s => s.Id == comment.Id));
+                var commetUpdate = _dbContext.Books.SelectMany(x => x.Comentarios.Where(s => s.Id == comment.Id)).FirstOrDefault();
+                var book = _dbContext.Books.FirstOrDefault(x => x.Comentarios.Any(s => s.Id == comment.Id));
                 book.Comentarios.Remove(commetUpdate);
                 book.Comentarios.Add(comment);
+                _dbContext.SaveChanges();
                 return true;
             }
             return false;

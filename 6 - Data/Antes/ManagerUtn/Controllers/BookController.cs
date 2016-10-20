@@ -12,7 +12,7 @@ namespace ManagerUtn.Controllers
         private IBookRepository BookRepository { get; }
         public BookController()
         {
-            BookRepository = new BookRepository();
+            this.BookRepository = new BookRepository();
         }
 
         public ActionResult Index()

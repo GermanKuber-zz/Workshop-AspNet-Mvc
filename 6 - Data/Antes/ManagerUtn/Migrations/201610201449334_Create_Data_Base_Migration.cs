@@ -3,33 +3,10 @@ namespace ManagerUtn.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class First : DbMigration
+    public partial class Create_Data_Base_Migration : DbMigration
     {
         public override void Up()
         {
-            CreateTable(
-                "dbo.Books",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Titulo = c.String(),
-                        Image = c.String(),
-                        Descripcion = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Comments",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Comentario = c.String(),
-                        Book_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Books", t => t.Book_Id)
-                .Index(t => t.Book_Id);
-            
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -106,21 +83,17 @@ namespace ManagerUtn.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Comments", "Book_Id", "dbo.Books");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Comments", new[] { "Book_Id" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Comments");
-            DropTable("dbo.Books");
         }
     }
 }

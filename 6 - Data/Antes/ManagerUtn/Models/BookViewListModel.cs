@@ -18,12 +18,12 @@ namespace ManagerUtn.Models
 
         public BookViewListModel(Book book)
         {
-            Id = book.Id;
-            Titulo = book.Titulo;
-            Image = book.Image;
-            Descripcion = book.Descripcion;
+            this.Id = book.Id;
+            this.Titulo = book.Titulo;
+            this.Image = book.Image;
+            this.Descripcion = book.Descripcion;
             if (book.Comentarios != null)
-                CountComentarios = book.Comentarios.Count();
+                this.CountComentarios = book.Comentarios.Count();
         }
     }
 }

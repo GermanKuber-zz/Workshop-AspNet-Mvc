@@ -19,12 +19,12 @@ namespace ManagerUtn.Models
 
         public BookViewModel(Book book)
         {
-            Id = book.Id;
-            Titulo = book.Titulo;
-            Image = book.Image;
-            Descripcion = book.Descripcion;
+            this.Id = book.Id;
+            this.Titulo = book.Titulo;
+            this.Image = book.Image;
+            this.Descripcion = book.Descripcion;
 
-            Comentarios = book?.Comentarios?.Select(x => new CommentViewModel(x)).ToList();
+            this.Comentarios = book?.Comentarios?.Select(x => new CommentViewModel(x)).ToList();
         }
     }
 }

@@ -1,5 +1,7 @@
-﻿using System.Security.Claims;
+﻿using System.Data.Entity;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using ManagerUtn.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -29,8 +31,7 @@ namespace ManagerUtn.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Entities.Book> Books { get; set; }
-
-        public System.Data.Entity.DbSet<Entities.Comment> Comments { get; set; }
+        public DbSet<Comment> Comentarios { get; set; }
+        public DbSet<Book> Books { get; set; }
     }
 }

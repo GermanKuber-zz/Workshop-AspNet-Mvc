@@ -6,8 +6,8 @@ namespace ManagerUtn.Models
     {
         public CommentViewModel(Comment comentario)
         {
-            Comentario = comentario.Comentario;
-            UserName = comentario.UserName;
+            this.Comentario = comentario.Comentario;
+            this.UserName = comentario.UserName;
         }
         public string Comentario { get; set; }
         public string UserName { get; set; }

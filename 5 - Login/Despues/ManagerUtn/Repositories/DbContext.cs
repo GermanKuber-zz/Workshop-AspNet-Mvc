@@ -21,12 +21,14 @@ namespace ManagerUtn.Repositories
                         new Comment
                         {
                             Id = 1,
-                            Comentario = "Primer comentario"
+                            Comentario = "Primer comentario",
+                            UserName = "Usuario1@test.com"
                         },
                            new Comment
                         {
                             Id = 2,
-                            Comentario = "Segundo comentario"
+                            Comentario = "Segundo comentario",
+                            UserName = "OtroUsuario@test.com"
                         }
                     }
                 } ,new Book{
@@ -43,7 +45,8 @@ namespace ManagerUtn.Repositories
                     Comentarios = new List<Comment> {  new Comment
                         {
                             Id = 1,
-                            Comentario = "Primer comentario"
+                            Comentario = "Primer comentario",
+                             UserName = "anonimo@test.com"
                         }
                     }
                 }  ,new Book{

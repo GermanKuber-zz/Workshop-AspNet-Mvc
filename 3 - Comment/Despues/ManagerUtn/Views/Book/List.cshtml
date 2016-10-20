@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ManagerUtn.Models.BookViewListModel>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Lista de libros</h2>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail">
+                <img style="width: 120px;height: 160px" src="@item.Image" alt="">
+                <div class="caption">
+                    <h4 class="pull-right">$24.99</h4>
+                    <h4>
+                        @Html.ActionLink(item.Titulo, "Details", new { id = item.Id })
+                    </h4>
+                    <p>@(item.Descripcion.Length > 180 ? item.Descripcion.Substring(0, 180) + "..." : item.Descripcion) </p>
+                </div>
+                <div class="ratings">
+                    @Html.ActionLink("Comentar", "Create", "Comments", new { bookId = item.Id }, htmlAttributes: new { @class = "btn btn-primary" })
+                    @*<button class="btn btn-primary">Comentar</button>*@
+                    <p class="pull-right">@item.CountComentarios Comentarios</p>
+
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

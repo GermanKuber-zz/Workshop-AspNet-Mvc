@@ -21,6 +21,7 @@ namespace ManagerUtn.Controllers
 
         [HttpGet]
         [Route("comments/create/{bookId}")]
+        [Authorize]
         public ActionResult Create(int bookId)
         {
             var book = VerifyData(bookId);
@@ -36,12 +37,13 @@ namespace ManagerUtn.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("comments/create/{bookId}")]
+        [Authorize]
         public ActionResult Create([Bind(Include = "Id,Comentario")] CommentViewModel comment, int bookId)
         {
             if (ModelState.IsValid)
             {
-          
-                _commentRepository.Add(CommentMapper.Map(comment),bookId);
+       
+                _commentRepository.Add(CommentMapper.Map(comment,User.Identity.Name),bookId);
 
                 var book = VerifyData(bookId);
                 if (book == null)

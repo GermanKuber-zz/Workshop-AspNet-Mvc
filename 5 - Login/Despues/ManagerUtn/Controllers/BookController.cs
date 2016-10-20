@@ -59,7 +59,8 @@ namespace ManagerUtn.Controllers
             return View(new BookViewModel(book));
         }
 
-
+        
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -67,6 +68,7 @@ namespace ManagerUtn.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create(BookViewModel book)
         {
             if (ModelState.IsValid)
@@ -79,7 +81,7 @@ namespace ManagerUtn.Controllers
             return View(book);
         }
 
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Book book = BookRepository.GetById(id);
@@ -93,6 +95,7 @@ namespace ManagerUtn.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Edit(BookViewModel book)
         {
             if (ModelState.IsValid)
@@ -102,7 +105,7 @@ namespace ManagerUtn.Controllers
             }
             return View( book);
         }
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             Book book = BookRepository.GetById(id);
@@ -115,6 +118,7 @@ namespace ManagerUtn.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult DeleteConfirmed(int id)
         {
           

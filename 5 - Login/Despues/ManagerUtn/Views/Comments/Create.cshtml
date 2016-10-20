@@ -33,17 +33,24 @@
         <table class="table">
             <tr>
                 <th>
-                   Comentarios</th>
-      
+                    Usuario
+                </th>
+                <th>
+                    Comentarios
+                </th>
+
             </tr>
 
             @foreach (var item in ViewBag.Book.Comentarios)
             {
                 <tr>
                     <td>
+                        @item.UserName
+                    </td>
+                    <td>
                         @item.Comentario
                     </td>
-          
+
                 </tr>
             }
 

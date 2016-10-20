@@ -32,5 +32,15 @@ namespace ManagerUtn.Mapper
             };
             return returnData;
         }
+        public static Comment Map(CommentViewModel comment,string userName)
+        {
+            var returnData = new Comment()
+            {
+                Comentario = comment.Comentario,
+                UserName =  userName
+
+            };
+            return returnData;
+        }
     }
 }

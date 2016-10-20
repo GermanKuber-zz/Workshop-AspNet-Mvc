@@ -1,0 +1,19 @@
+﻿@model ManagerUtn.Models.BookViewListModel
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="thumbnail">
+        <img style="width: 120px; height: 160px" src="@Model.Image" alt="">
+        <div class="caption">
+            <h4 class="pull-right">$24.99</h4>
+            <h4>
+                @Html.ActionLink(Model.Titulo, "Details", "Book", new { id = Model.Id },new { })
+                
+            </h4>
+            <p>@(Model.Descripcion.Length > 180 ? Model.Descripcion.Substring(0, 180) + "..." : Model.Descripcion) </p>
+        </div>
+        <div class="ratings">
+            @Html.ActionLink("Comentar", "Create", "Comments", new {bookId = Model.Id},  new {@class = "btn btn-primary"})
+            @*<button class="btn btn-primary">Comentar</button>*@
+            <p class="pull-right">@Model.CountComentarios Comentarios</p>
+        </div>
+    </div>
+</div>
